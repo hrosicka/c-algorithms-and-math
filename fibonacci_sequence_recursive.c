@@ -1,24 +1,31 @@
 #include <stdio.h>
 #include <time.h>
 
+// Recursive function declaration
+int fibonacci(int n) {
+    // Base cases
+    if (n == 0) {
+        return 0;
+    }
+    if (n == 1) {
+        return 1;
+    }
+
+    // Recursive step
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
 int main() {
     int n, i;
-    long long t1 = 0, t2 = 1;
-    long long nextTerm = t1 + t2;
 
     printf("Enter the number of terms: ");
     scanf("%d", &n);
     clock_t start_time = clock();
 
-    // Prints the first two terms of the sequence
-    printf("Fibonacci Sequence: %lld, %lld, ", t1, t2);
+    printf("Fibonacci Sequence: ");
 
-    // Loop to generate the next terms
-    for (i = 3; i <= n; ++i) {
-        printf("%lld, ", nextTerm);
-        t1 = t2;
-        t2 = nextTerm;
-        nextTerm = t1 + t2;
+    for (i = 0; i < n; i++) {
+        printf("%d, ", fibonacci(i));
     }
 
     clock_t end_time = clock();
@@ -34,6 +41,6 @@ int main() {
     // A safer way is to use a loop to consume characters.
     while (getchar() != '\n'); 
     getchar(); // Reads the final newline character.
-
+    
     return 0;
 }
